@@ -1,5 +1,12 @@
 let myLibrary = [];
 
+const bookInput = {
+  title: document.querySelector("input[name='title']"),
+  author: document.querySelector("input[name='author']"),
+  pages: document.querySelector("input[name='pages']"),
+  read: document.querySelector("input[name='read']")
+}
+
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
@@ -12,5 +19,10 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary() {
-  
+  let title = bookInput.title.value;
+  let author = bookInput.author.value;
+  let pages = bookInput.pages.value;
+  let read = bookInput.read.checked;
+  const newBook = new Book(title, author, pages, read);
+  myLibrary.push(newBook);  
 }
