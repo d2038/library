@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Library</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="./script.js" defer></script>
-</head>
-<body>
-  <div class="header">My Library</div>
-  <div class="newBook">
-    <button class="newBookButton">Add new book</button>
-  </div>
-  <div class="library"></div>
-  <!-- <form action="#" method="post">
-    <input type="text" name="title">
-    <input type="text" name="author">
-    <input type="text" name="pages">
-    <input type="checkbox" name="read" id="read">
-  </form> -->
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <div class="header">My Library</div>
+    <div class="newBook">
+      <button class="newBookButton">Add new book</button>
+    </div>
+    <div class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <div class="bookInput">
+          <h3>Add new book</h3>
+          <input class="textInput" type="text" name="title" />
+          <input class="textInput" type="text" name="author" />
+          <input class="textInput" type="text" name="pages" />
+          <input type="checkbox" name="read" id="read" />
+        </div>
+      </div>
+    </div>
+    <div class="library"></div>
+  </body>
 </html>

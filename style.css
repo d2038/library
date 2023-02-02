@@ -1,7 +1,7 @@
 body {
-  margin: 0;
-  display: grid;
-  background-color: hsla(229, 80%, 70%, 0.5);
+  margin: 0;  
+  background-color: hsla(229, 80%, 85%);
+  /* display: grid; */
 }
 
 .header {
@@ -24,9 +24,9 @@ body {
 
 .newBookButton {
   font-size: 22px;
-  padding: 15px 20px;
-  background-color: hsla(229, 80%, 70%, 0.5);
   font-weight: bold;
+  padding: 15px 20px;
+  background-color: hsl(229, 80%, 75%);
   border-radius: 15px;
   border: none;  
 }
@@ -36,14 +36,80 @@ body {
 }
 
 .library {
-  padding: 0 50px;
+  padding: 0 50px 20px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 2rem;
 }
 
 .card {
+  padding: 0 20px;
   background-color: white;  
-  height: 320px;
   border-radius: 10px;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);  
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 18rem;  
+  border-radius: 0.5rem;  
+}
+
+.close-button {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+
+.close-button:hover {
+  background-color: darkgray;
+}
+
+.show-modal {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.hide-modal {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.bookInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 2rem;  
 }
