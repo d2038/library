@@ -1,3 +1,14 @@
+const submitButton = document.querySelector(".submit");
+
+submitButton.addEventListener("click", submitClick, false);
+
+function submitClick(event) {
+  event.preventDefault();
+  addBookToLibrary();
+  hideModal();
+  displayBooks();
+}
+
 const modal = document.querySelector(".modal");
 const newBookButton = document.querySelector(".newBookButton");
 const closeButton = document.querySelector(".close-button");
@@ -64,7 +75,12 @@ function displayBooks() {
   let author;
   let pages;
   let read;
+  let selector;
   myLibrary.forEach((book, index) => {
+    selector = `.card[data-index='${index}']`;
+    if (document.querySelector(selector)) {
+      return;
+    }
     card = document.createElement("div");
     card.classList.add("card");
 
@@ -82,6 +98,8 @@ function displayBooks() {
     card.appendChild(author);
     card.appendChild(pages);
     card.appendChild(read);
+
+    card.setAttribute("data-index", index);
 
     bookDisplay.appendChild(card);
   });

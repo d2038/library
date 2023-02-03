@@ -17,11 +17,30 @@
       <div class="modal-content">
         <span class="close-button">&times;</span>
         <div class="bookInput">
-          <h3>Add new book</h3>
-          <input class="textInput" type="text" name="title" />
-          <input class="textInput" type="text" name="author" />
-          <input class="textInput" type="text" name="pages" />
-          <input type="checkbox" name="read" id="read" />
+          <div class="input-title">Add new book</div>
+          <input
+            class="textInput"
+            type="text"
+            name="title"
+            placeholder="Title"
+          />
+          <input
+            class="textInput"
+            type="text"
+            name="author"
+            placeholder="Author"
+          />
+          <input
+            class="textInput"
+            type="number"
+            name="pages"
+            placeholder="Pages"
+          />
+          <div class="checkbox">
+            <label for="read">Did you read it?</label>
+            <input type="checkbox" name="read" id="read" />
+          </div>
+          <button class="submit" type="submit">Submit</button>
         </div>
       </div>
     </div>
