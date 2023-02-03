@@ -1,38 +1,3 @@
-const submitButton = document.querySelector(".submit");
-
-submitButton.addEventListener("click", submitClick, false);
-
-function submitClick(event) {
-  event.preventDefault();
-  addBookToLibrary();
-  hideModal();
-  displayBooks();
-}
-
-const modal = document.querySelector(".modal");
-const newBookButton = document.querySelector(".newBookButton");
-const closeButton = document.querySelector(".close-button");
-
-function showModal() {
-  modal.classList.add("show-modal");
-  modal.classList.remove("hide-modal");
-}
-
-function hideModal() {
-  modal.classList.add("hide-modal");
-  modal.classList.remove("show-modal");
-}
-
-function windowOnClick(event) {
-  if (event.target === modal) {
-    hideModal();
-  }
-}
-
-newBookButton.addEventListener("click", showModal);
-closeButton.addEventListener("click", hideModal);
-window.addEventListener("click", windowOnClick);
-
 let myLibrary = [
   {
     title:
@@ -50,8 +15,39 @@ const bookInput = {
   pages: document.querySelector("input[name='pages']"),
   read: document.querySelector("input[name='read']"),
 };
-
+const submitButton = document.querySelector(".submit");
+const modal = document.querySelector(".modal");
+const newBookButton = document.querySelector(".newBookButton");
+const closeButton = document.querySelector(".close-button");
 const bookDisplay = document.querySelector(".library");
+
+submitButton.addEventListener("click", submitClick, false);
+newBookButton.addEventListener("click", showModal);
+closeButton.addEventListener("click", hideModal);
+window.addEventListener("click", windowOnClick);
+
+function submitClick(event) {
+  event.preventDefault();
+  addBookToLibrary();
+  hideModal();
+  displayBooks();
+}
+
+function showModal() {
+  modal.classList.add("show-modal");
+  modal.classList.remove("hide-modal");
+}
+
+function hideModal() {
+  modal.classList.add("hide-modal");
+  modal.classList.remove("show-modal");
+}
+
+function windowOnClick(event) {
+  if (event.target === modal) {
+    hideModal();
+  }
+}
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -76,9 +72,10 @@ function displayBooks() {
   let pages;
   let read;
   let selector;
+  let deleteButton;
   myLibrary.forEach((book, index) => {
     selector = `.card[data-index='${index}']`;
-    if (document.querySelector(selector)) {
+    if (document.querySelector(selector) || book === undefined) {
       return;
     }
     card = document.createElement("div");
@@ -93,16 +90,27 @@ function displayBooks() {
     read = document.createElement("input");
     read.type = "checkbox";
     read.checked = book.read;
+    deleteButton = document.createElement("button");
+    deleteButton.textContent = "Remove";
+    deleteButton.addEventListener("click", deleteBook);
 
     card.appendChild(title);
     card.appendChild(author);
     card.appendChild(pages);
     card.appendChild(read);
+    card.appendChild(deleteButton);
 
     card.setAttribute("data-index", index);
 
     bookDisplay.appendChild(card);
   });
+}
+
+function deleteBook(event) {
+  let book = event.path[1];
+  let index = book.dataset.index;
+  delete myLibrary[index];
+  bookDisplay.removeChild(book);
 }
 
 displayBooks();
