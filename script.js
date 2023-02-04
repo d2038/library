@@ -1,13 +1,4 @@
-let myLibrary = [
-  {
-    title:
-      "harry potterfffff fffffffffffff fffffffffffffffffffff ffffffffffffffffff",
-    author: "someone",
-    pages: "300",
-    read: true,
-  },
-  { title: "molly rotter", author: "noone", pages: "200", read: false },
-];
+let myLibrary = [];
 
 const bookInput = {
   title: document.querySelector("input[name='title']"),
@@ -31,6 +22,7 @@ function submitClick(event) {
   addBookToLibrary();
   hideModal();
   displayBooks();
+  resetInput();
 }
 
 function showModal() {
@@ -49,12 +41,23 @@ function windowOnClick(event) {
   }
 }
 
+function resetInput() {
+  bookInput.title.value = "";
+  bookInput.author.value = "";
+  bookInput.pages.value = "";
+  bookInput.read.checked = false;
+}
+
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.read = read;
 }
+
+Book.prototype.changeRead = function () {
+  this.read = !this.read;
+};
 
 function addBookToLibrary() {
   let title = bookInput.title.value;
@@ -87,9 +90,27 @@ function displayBooks() {
     author.textContent = book.author;
     pages = document.createElement("p");
     pages.textContent = book.pages;
-    read = document.createElement("input");
-    read.type = "checkbox";
-    read.checked = book.read;
+    read = document.createElement("button");
+    if (book.read) {
+      read.classList.add("read");
+      read.textContent = "Read";
+    } else {
+      read.classList.add("not-read");
+      read.textContent = "Not read";
+    }
+    read.addEventListener("click", function (event) {
+      book.changeRead();
+      let button = event.target;
+      if (book.read) {
+        button.classList.add("read");
+        button.classList.remove("not-read");
+        button.textContent = "Read";
+      } else {
+        button.classList.add("not-read");
+        button.classList.remove("read");
+        button.textContent = "Not read";
+      }
+    });
     deleteButton = document.createElement("button");
     deleteButton.textContent = "Remove";
     deleteButton.addEventListener("click", deleteBook);
@@ -107,10 +128,22 @@ function displayBooks() {
 }
 
 function deleteBook(event) {
-  let book = event.path[1];
+  let book = event.target.parentNode;
   let index = book.dataset.index;
   delete myLibrary[index];
   bookDisplay.removeChild(book);
 }
+
+myLibrary.push(
+  new Book(
+    "harry potter and the prisoner of azkaban",
+    "j.k rollings",
+    400,
+    true
+  )
+);
+myLibrary.push(
+  new Book("quien se robo mi queso", "un loco esquizo", 200, false)
+);
 
 displayBooks();
