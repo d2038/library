@@ -69,28 +69,21 @@ function addBookToLibrary() {
 }
 
 function displayBooks() {
-  let card;
-  let title;
-  let author;
-  let pages;
-  let read;
-  let selector;
-  let deleteButton;
   myLibrary.forEach((book, index) => {
-    selector = `.card[data-index='${index}']`;
+    let selector = `.card[data-index='${index}']`;
     if (document.querySelector(selector) || book === undefined) {
       return;
     }
-    card = document.createElement("div");
+    let card = document.createElement("div");
     card.classList.add("card");
 
-    title = document.createElement("p");
-    title.textContent = book.title;
-    author = document.createElement("p");
+    let title = document.createElement("p");
+    title.textContent = `"${book.title}"`;
+    let author = document.createElement("p");
     author.textContent = book.author;
-    pages = document.createElement("p");
-    pages.textContent = book.pages;
-    read = document.createElement("button");
+    let pages = document.createElement("p");
+    pages.textContent = `${book.pages} pages`;
+    let read = document.createElement("button");
     if (book.read) {
       read.classList.add("read");
       read.textContent = "Read";
@@ -111,15 +104,20 @@ function displayBooks() {
         button.textContent = "Not read";
       }
     });
-    deleteButton = document.createElement("button");
+    let deleteButton = document.createElement("button");
     deleteButton.textContent = "Remove";
+    deleteButton.classList.add("deleteButton");
     deleteButton.addEventListener("click", deleteBook);
+
+    let buttonGroup = document.createElement("div");
+    buttonGroup.classList.add("buttonGroup");
+    buttonGroup.appendChild(read);
+    buttonGroup.appendChild(deleteButton);
 
     card.appendChild(title);
     card.appendChild(author);
     card.appendChild(pages);
-    card.appendChild(read);
-    card.appendChild(deleteButton);
+    card.appendChild(buttonGroup);
 
     card.setAttribute("data-index", index);
 
@@ -128,7 +126,7 @@ function displayBooks() {
 }
 
 function deleteBook(event) {
-  let book = event.target.parentNode;
+  let book = event.target.parentNode.parentNode;
   let index = book.dataset.index;
   delete myLibrary[index];
   bookDisplay.removeChild(book);

@@ -4,6 +4,16 @@ body {
   /* display: grid; */
 }
 
+button {
+  opacity: 0.8;
+  border: none;  
+}
+
+button:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
 .header {
   text-align: center;
   font-size: 40px;
@@ -26,13 +36,8 @@ body {
   font-size: 22px;
   font-weight: bold;
   padding: 15px 20px;
-  background-color: hsl(229, 80%, 75%);
-  border-radius: 1rem;
-  border: none;  
-}
-
-.newBookButton:hover {
-  cursor: pointer;
+  background-color: hsla(229, 80%, 75%);
+  border-radius: 1rem;  
 }
 
 .library {
@@ -43,13 +48,13 @@ body {
 }
 
 .card {
-  padding: 0 20px;
+  padding: 20px 20px;
   background-color: white;  
   border-radius: 0.7rem;
-  height: 320px;
+  height: 280px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -62,7 +67,8 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 0;
   visibility: hidden;
-  transform: scale(1.1);  
+  transform: scale(1.1);
+  z-index: 1;
 }
 
 .modal-content {
@@ -93,7 +99,7 @@ body {
   background-color: darkgray;
 }
 
-.show-modal {
+.show-modal {  
   opacity: 1;
   visibility: visible;
   transform: scale(1.0);
@@ -110,7 +116,7 @@ body {
 .bookInput {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   gap: 2rem;
   padding: 20px 0;
@@ -118,7 +124,8 @@ body {
 
 .input-title {
   font-weight: bold;
-  font-size: 1.5rem;  
+  font-size: 1.5rem;
+  cursor: default;
 }
 
 .textInput {
@@ -126,6 +133,14 @@ body {
   border-radius: 0.3rem;
   font-size: 1rem;
   padding: 0.1rem 0.3rem;
+}
+
+.textInput:hover {
+  box-shadow: 7px 5px 5px darkgray;
+}
+
+.textInput:focus {
+  box-shadow: 7px 5px 5px darkgray;
 }
 
 .checkbox {  
@@ -141,4 +156,37 @@ body {
   
 .read {
   background-color:turquoise;
+}
+
+.submit {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 40px;
+  background-color: hsl(229, 80%, 75%);
+  border-radius: 0.7rem;  
+}
+
+.card p {
+  margin: 0;
+  font-size: 22px;
+  text-align: center;
+  cursor: default;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;  
+  width: 100%;
+}
+
+.card button {
+  font-size: 22px;
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 0.7rem;
+}
+
+.deleteButton {
+  background-color: darkgray;
 }
