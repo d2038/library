@@ -132,16 +132,4 @@ function deleteBook(event) {
   bookDisplay.removeChild(book);
 }
 
-myLibrary.push(
-  new Book(
-    "harry potter and the prisoner of azkaban",
-    "j.k rollings",
-    400,
-    true
-  )
-);
-myLibrary.push(
-  new Book("quien se robo mi queso", "un loco esquizo", 200, false)
-);
-
 displayBooks();
